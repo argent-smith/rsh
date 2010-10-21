@@ -5,8 +5,9 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rsh"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Simple wrapper for rsh cli command.}
+    gem.description = %Q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
+      Here's the gem wrapping call to this command and handling the command's result/output.}
     gem.email = "argentoff@gmail.com"
     gem.homepage = "http://github.com/argent-smith/rsh"
     gem.authors = ["Pavel Argentov"]
