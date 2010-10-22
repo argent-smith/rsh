@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rsh}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Argentov"]
-  s.date = %q{2010-10-21}
+  s.date = %q{2010-10-22}
   s.description = %q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
       Here's the gem wrapping call to this command and handling the command's result/output.}
   s.email = %q{argentoff@gmail.com}
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/rsh.rb",
+     "rsh.gemspec",
      "spec/rsh_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"

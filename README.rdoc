@@ -1,16 +1,13 @@
 = rsh
 
-Description goes here.
+Author:: Pavel Argentov (argentoff at gmail dot com)
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+Here's a simple tiny wrapper which alows me to use rsh shell command in PORO
+(Plain Old Ruby Object) style. For all details see Rsh class rdoc.
+
+This gem was developed and tested on FreeBSD 8.1. If you find any
+incompatibilities and/or are ready to help me fix the problem feel free to
+write me on the public email listed above.
 
 == Copyright
 
