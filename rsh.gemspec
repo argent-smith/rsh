@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Argentov"]
-  s.date = %q{2010-10-22}
+  s.date = %q{2010-10-23}
   s.description = %q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
       Here's the gem wrapping call to this command and handling the command's result/output.}
   s.email = %q{argentoff@gmail.com}
