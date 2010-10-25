@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rsh}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Argentov"]
-  s.date = %q{2010-10-23}
+  s.date = %q{2010-10-25}
   s.description = %q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
       Here's the gem wrapping call to this command and handling the command's result/output.}
   s.email = %q{argentoff@gmail.com}
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{rsh}
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Simple wrapper for rsh cli command.}
   s.test_files = [
     "spec/spec_helper.rb",
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])

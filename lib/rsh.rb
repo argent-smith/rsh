@@ -2,7 +2,7 @@
 # 
 # Creates and operates an 'rsh' command call instance. Parameters to rsh may
 # be specified through either constructor or attribute accessors. Result of
-# rsh execution (_String_) is either returned in functional style (<tt>##execute</tt> method call)
+# rsh execution (_String_) is either returned in functional style (<tt>execute</tt> method call)
 # or in special attribute, _result_.
 #
 # == Synopsis
@@ -15,6 +15,23 @@
 #   rsh.execute do |line| puts line end
 #
 #   18:30:46.799 MSD Fri Oct 22 2010
+#
+# === Example:
+#
+# This is an example of rsh in action usin interactive Ruby.
+#
+#   irb(main):001:0> require 'rsh'
+#   => true
+#
+#   irb(main):002:0> rsh = Rsh.new(:host => "c7206", :ruser => "bill",
+#                                  :command => "show clock")
+#   => #<Rsh:0x2853f390 @ruser="bill", @executable="/usr/bin/rsh", @result="", @command="show clock", @nullr=false, @host="c7206", @to=3>
+#
+#   irb(main):003:0> rsh.execute do |line| puts line end
+#
+#   18:30:46.799 MSD Fri Oct 22 2010
+#   => "\r\n18:30:46.799 MSD Fri Oct 22 2010\n"
+#
 #
 # == See also
 #
@@ -44,25 +61,21 @@ class Rsh
   attr_accessor :nullr
 
   # The Constructor. Checks the presence of rsh in the system (running,
-  # naturally, 'which rsh') and prepares the command to be run with <tt>##execute</tt>. 
+  # naturally, 'which rsh') and prepares the command to be run with <tt>execute</tt>. 
   # rsh CLI arguments are either having default values, being collected from constructor 
   # call or specified via accessors.
   #
-  # call-seq:
-  #   new(:host => "hostname", 
-  #       :command => "example.sh", 
-  #       :ruser => "jack", 
-  #       :to => 5, 
-  #       :nullr => true)
-  #
-  # Argument defaults are:
+  # Call sequence:
+  #   Rsh.new -> Rsh instance
+  #   Rsh.new(:host => "hostname", :command => "example.sh", :ruser => "jack", :to => 5, :nullr => true) -> Rsh instance
+  # 
+  # If called without arguments, the following default values are being used:
+  # 
   #   :host    => "localhost"
   #   :command => ""
   #   :ruser   => "nobody"
   #   :to      => 3 
   #   :nullr   => false
-  #
-  # Arguments hash is optional.
   #
   def initialize(args={})
     args = {:host    => "localhost", 
@@ -92,6 +105,15 @@ class Rsh
   # If given a block, calls it for each line received from rsh output
   # (parameter _line_).
   #
+  # Call sequence:
+  #
+  # a)
+  #   rsh_inst.execute do |line|
+  #     puts line
+  #   done -> complete_result_String
+  # b)
+  #   rsh_inst.execute -> complete_result_String
+  #
   # Returns:: the complete rsh output as one _String_. The result is also
   #           stored and available via _result_ attribute.
   #
@@ -105,23 +127,5 @@ class Rsh
     end
     @result
   end
-
-  #
-  # :section: Example
-  #
-  # This is an example of rsh in action usin interactive Ruby.
-  #
-  #   irb(main):001:0> require 'rsh'
-  #   => true
-  #
-  #   irb(main):002:0> rsh = Rsh.new(:host => "c7206", :ruser => "bill",
-  #                                  :command => "show clock")
-  #   => #<Rsh:0x2853f390 @ruser="bill", @executable="/usr/bin/rsh", @result="", @command="show clock", @nullr=false, @host="c7206", @to=3>
-  #
-  #   irb(main):003:0> rsh.execute do |line| puts line end
-  #
-  #   18:30:46.799 MSD Fri Oct 22 2010
-  #   => "\r\n18:30:46.799 MSD Fri Oct 22 2010\n"
-  #
 
 end
