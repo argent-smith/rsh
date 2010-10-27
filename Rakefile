@@ -11,7 +11,6 @@ begin
     gem.email = "argentoff@gmail.com"
     gem.homepage = "http://github.com/argent-smith/rsh"
     gem.authors = ["Pavel Argentov"]
-    gem.rubyforge_project = "rsh"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
