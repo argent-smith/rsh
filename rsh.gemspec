@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
       Here's the gem wrapping call to this command and handling the command's result/output.}
   s.email = %q{argentoff@gmail.com}
   s.extra_rdoc_files = [
-    "LICENSE",
+    "CHANGELOG",
+     "LICENSE",
      "README.rdoc"
   ]
   s.files = [

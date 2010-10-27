@@ -13,6 +13,11 @@ begin
     gem.homepage = "http://github.com/argent-smith/rsh"
     gem.authors = ["Pavel Argentov"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.extra_rdoc_files = [
+      "LICENSE",
+      "CHANGELOG",
+      "README.rdoc"
+    ]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -43,6 +48,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "rsh #{version}"
   rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('CHANGELOG*')
+  rdoc.rdoc_files.include('LICENSE*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
