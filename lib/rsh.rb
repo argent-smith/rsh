@@ -2,7 +2,7 @@
 # 
 # Creates and operates an 'rsh' command call instance. Parameters to rsh may
 # be specified through either constructor or attribute accessors. Result of
-# rsh execution (_String_) is either returned in functional style (<tt>execute</tt> method call)
+# rsh execution (_String_) is either returned in functional style (<tt>execute!</tt> method call)
 # or in special attribute, _result_.
 #
 # == Synopsis
@@ -12,9 +12,11 @@
 #   rsh = Rsh.new(:host => "c7206", :ruser => "bill",
 #                 :command => "show clock")
 #
-#   rsh.execute do |line| puts line end
+#   rsh.execute! do |line| puts line end
 #
 #   18:30:46.799 MSD Fri Oct 22 2010
+#
+# * See c) case in execute! method comment. 
 #
 # === Example:
 #
@@ -27,7 +29,7 @@
 #                                  :command => "show clock")
 #   => #<Rsh:0x2853f390 @ruser="bill", @executable="/usr/bin/rsh", @result="", @command="show clock", @nullr=false, @host="c7206", @to=3>
 #
-#   irb(main):003:0> rsh.execute do |line| puts line end
+#   irb(main):003:0> rsh.execute! do |line| puts line end
 #
 #   18:30:46.799 MSD Fri Oct 22 2010
 #   => "\r\n18:30:46.799 MSD Fri Oct 22 2010\n"
@@ -61,7 +63,7 @@ class Rsh
   attr_accessor :nullr
 
   # The Constructor. Checks the presence of rsh in the system (running,
-  # naturally, 'which rsh') and prepares the command to be run with <tt>execute</tt>. 
+  # naturally, 'which rsh') and prepares the command to be run with <tt>execute!</tt>. 
   # rsh CLI arguments are either having default values, being collected from constructor 
   # call or specified via accessors.
   #
@@ -108,18 +110,22 @@ class Rsh
   # Call sequence:
   #
   # a)
-  #   rsh_inst.execute do |line|
+  #   rsh_inst.execute! do |line|
   #     puts line
-  #   done -> complete_result_String
+  #   done #=> complete_result_String
   # b)
-  #   rsh_inst.execute -> complete_result_String
+  #   rsh_inst.execute! #=> complete_result_String
+  # c)
+  #   rsh_inst.execute! "remote_command" #=> same as above, but replacing
+  #                                          @command with the given string
   #
   # Returns:: the complete rsh output as one _String_. The result is also
   #           stored and available via _result_ attribute.
   #
-  def execute
+  def execute!(command=nil)
+    @command = command if command
     @result = ""
-    open "|#{executable} #{"-n" if @nullr} -l#{ruser} -t#{to} #{host} #{command}" do |io|
+    open "|#{@executable} #{"-n" if @nullr} -l#{@ruser} -t#{@to} #{@host} #{@command}" do |io|
       io.each do |line|
         yield(line) if block_given?
         @result << line
@@ -127,5 +133,7 @@ class Rsh
     end
     @result
   end
+
+  alias :execute :execute!
 
 end
