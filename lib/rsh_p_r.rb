@@ -4,39 +4,49 @@
 # by Oleg Prokopyev, <riiki@gu.net>
 module RshPR
   require 'socket'
-
+  # force pure ruby rsh client
+  attr_accessor :ruby_impl
   # Local user name, used in pure ruby implementation.
   attr_accessor :luser
 
+  # Specific constructor: additional parmeter key added:
+  # * :ruby_impl -- turns on pure ruby implementation of RSH protocol client.
   def initialize(args={})
     args = {
-      :host    => "localhost",
-      :command => "",
-      :ruser   => "nobody",
-      :luser   => ENV["USER"] || "nobody",
-      :to      => 3,
-      :nullr   => false
+      :host      => "localhost",
+      :command   => "",
+      :ruser     => "nobody",
+      :luser     => ENV["USER"] || "nobody",
+      :to        => 3,
+      :nullr     => false,
+      :ruby_impl => false
     }.merge!(args)
+
+    @result     = ""
+    @ruby_impl  = args[:ruby_impl]
+    @host       = args[:host]
+    @command    = args[:command]
+    @ruser      = args[:ruser]
+    @to         = args[:to]
+    @nullr      = args[:nullr]
+
     begin
-      open("| which rsh") do |io|
-        @executable = io.gets.chomp
+      if @ruby_impl
+        @executable = :ruby_impl
+      else
+        open("| which rsh") do |io|
+          @executable = io.gets.chomp
+        end
       end
     rescue => detail
-      @executable = :self_impl
+      @executable = :ruby_impl
     end
-
-    @host    = args[:host]
-    @command = args[:command]
-    @ruser   = args[:ruser]
-    @to      = args[:to]
-    @nullr   = args[:nullr]
-    @result  = ""
   end
 
   def execute!(command=nil)
     @command = command if command
     @result = ""
-    if @executable == :self_impl
+    if @executable == :ruby_impl
       # pure ruby implementation call
       rsh_ruby do |line|
         yield(line) if block_given?
