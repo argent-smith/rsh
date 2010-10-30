@@ -101,6 +101,7 @@ class Rsh
     @host       = args[:host]
     @command    = args[:command]
     @ruser      = args[:ruser]
+    @luser      = args[:luser]
     @to         = args[:to]
     @nullr      = args[:nullr]
 
