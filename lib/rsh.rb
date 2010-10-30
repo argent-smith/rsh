@@ -84,6 +84,7 @@ class Rsh
   #   :to        => 3
   #   :nullr     => false
   #   :ruby_impl => false
+  #   :luser     => ENV["USER"] || "nobody"
   #
   def initialize(args={})
     args = {
