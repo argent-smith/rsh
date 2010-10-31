@@ -57,7 +57,6 @@ class Rsh
   attr_accessor :ruser
   # rsh timeout, +Integer+ (see man 1 rsh)
   attr_accessor :to
-
   # boolean knob for <tt>/dev/null</tt> redirection; see man rsh for further
   # information
   attr_accessor :nullr
@@ -68,13 +67,13 @@ class Rsh
   # call or specified via accessors.
   #
   # Call sequence:
-  #   Rsh.new -> Rsh instance
+  #   Rsh.new #=> Rsh instance
   #   Rsh.new(:host      => "hostname",
   #           :command   => "example.sh",
   #           :ruser     => "jack",
   #           :to        => 5,
   #           :nullr     => true
-  #           :ruby_impl => true) -> Rsh instance
+  #           :ruby_impl => true) #=> Rsh instance
   # 
   # If called without arguments, the following default values are being used:
   # 
@@ -167,7 +166,7 @@ class Rsh
     s.write "#{@luser}\0"
     s.write "#{@ruser}\0"
     s.write "#{@command}\0"
-    s.getc
+    s.getc # cutting off the first byte, signalling?
     while line = s.gets
       if block_given?
         yield line
