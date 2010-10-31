@@ -1,6 +1,8 @@
 # -*- Ruby -*-
 # Ruby remote shell protocol (RFC 1282) client.
+
 require 'socket' # we'll need it in pure ruby implementation
+
 # = Ruby remote shell protocol (RFC 1282) client
 # 
 # Creates and operates an rsh client instance. Parameters may
@@ -124,7 +126,7 @@ class Rsh
   # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
   # if @executable is not nil.
   def ruby_impl=(bool)
-    @ruby_impl = bool if @executable
+    @executable ? @ruby_impl = bool : @ruby_impl
   end
 
   # Executes rsh command using previously collected arguments. If :ruby_impl is
