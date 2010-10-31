@@ -14,8 +14,8 @@ begin
     gem.authors = ["Pavel Argentov"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.extra_rdoc_files = [
-      "LICENSE",
-      "CHANGELOG",
+      "LICENSE.rdoc",
+      "CHANGELOG.rdoc",
       "README.rdoc"
     ]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -55,7 +55,7 @@ end
 
 desc 'update changelog'  
 task :changelog do  
-  File.open('CHANGELOG', 'w+') do |changelog|  
+  File.open('CHANGELOG.rdoc', 'w+') do |changelog|  
     `git log -z --abbrev-commit`.split("\0").each do |commit|  
       next if commit =~ /^Merge: \d*/  
       ref, author, time, _, title, _, message = commit.split("\n", 7)  
