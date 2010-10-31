@@ -39,8 +39,8 @@
 #
 #   % man 1 rsh
 #
+require 'socket'
 class Rsh
-  require 'socket'
   # flags whether to force pure ruby rsh client
   attr_accessor :ruby_impl
   # Local user name, used in pure ruby implementation.
@@ -106,14 +106,12 @@ class Rsh
     @to         = args[:to]
     @nullr      = args[:nullr]
 
-    unless @ruby_impl
-      begin
-        open("| which rsh") do |io|
-          @executable = io.gets.chomp
-        end
-      rescue => detail
-        @ruby_impl = true
+    begin
+      open("| which rsh") do |io|
+        @executable = io.gets.chomp
       end
+    rescue => detail
+      @ruby_impl = true
     end
   end
 
@@ -169,6 +167,7 @@ class Rsh
     s.write "#{@luser}\0"
     s.write "#{@ruser}\0"
     s.write "#{@command}\0"
+    s.getc
     while line = s.gets
       if block_given?
         yield line
