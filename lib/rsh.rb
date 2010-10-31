@@ -1,9 +1,17 @@
-# = UNIX rsh(1) wrapper class
+# -*- Ruby -*-
+# Ruby remote shell protocol (RFC 1282) client.
+require 'socket' # we'll need it in pure ruby implementation
+# = Ruby remote shell protocol (RFC 1282) client
 # 
-# Creates and operates an 'rsh' command call instance. Parameters to rsh may
+# Creates and operates an rsh client instance. Parameters may
 # be specified through either constructor or attribute accessors. Result of
-# rsh execution (_String_) is either returned in functional style (<tt>execute!</tt> method call)
-# or in special attribute, _result_.
+# remote command execution (_String_) is either returned in functional style
+# (<tt>execute!</tt> method call) or in special attribute, _:result_.
+#
+# == New: pure ruby rsh client
+# As of ver. 1.0.0, pure ruby rsh client is implemented. It is used whether if
+# you set :ruby_impl to true or if 'rsh' program wasn't found in the system while
+# setting :ruby_impl to false.
 #
 # == Synopsis
 #
@@ -39,12 +47,9 @@
 #
 #   % man 1 rsh
 #
-require 'socket'
 class Rsh
   # flags whether to force pure ruby rsh client
   attr_accessor :ruby_impl
-  # Local user name, used in pure ruby implementation.
-  attr_accessor :luser
   # path to rsh program, +String+
   attr_reader   :executable
   # result +String+
@@ -55,6 +60,8 @@ class Rsh
   attr_accessor :command
   # remote username, +String+
   attr_accessor :ruser
+  # Local user name, used in pure ruby implementation.
+  attr_accessor :luser
   # rsh timeout, +Integer+ (see man 1 rsh)
   attr_accessor :to
   # boolean knob for <tt>/dev/null</tt> redirection; see man rsh for further
@@ -112,6 +119,12 @@ class Rsh
     rescue => detail
       @ruby_impl = true
     end
+  end
+  
+  # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
+  # if @executable is not nil.
+  def ruby_impl=(bool)
+    @ruby_impl = bool if @executable
   end
 
   # Executes rsh command using previously collected arguments. If :ruby_impl is
