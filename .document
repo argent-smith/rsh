@@ -1,6 +1,4 @@
-README.rdoc
+*.rdoc
 lib/**/*.rb
 bin/*
 features/**/*.feature
-LICENSE
-CHANGELOG
