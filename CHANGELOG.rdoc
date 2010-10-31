@@ -1,3 +1,10 @@
+[f5ac480 | Sun Oct 31 09:12:03 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Version 1.0.0 feature freeze
+
+    Version 1.0.0 features pure ruby rsh client. See Rsh class documentation for
+    details.
+
 [0b8dd96 | Sun Oct 31 09:08:02 UTC 2010] Pavel Argentov <argentoff@gmail.com>
 
  * Version bump to 1.0.0
