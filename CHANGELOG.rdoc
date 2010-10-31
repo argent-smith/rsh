@@ -1,3 +1,89 @@
+[0b8dd96 | Sun Oct 31 09:08:02 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Version bump to 1.0.0
+
+[4062f8e | Sun Oct 31 09:04:02 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * ruby_impl= optimization
+
+[7c3f811 | Sun Oct 31 08:44:43 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * ./doc -> .gitignore
+
+[97c7732 | Sun Oct 31 08:43:27 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Kinda ready for test
+
+[e3feeca | Sun Oct 31 07:44:06 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * First byte experiment
+
+    Looks like successful. Leave it in place.
+
+[0cb9667 | Sun Oct 31 07:26:45 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * First byte experiment
+
+    Try to throw away first byte of server's output (it seems to be kinda 
+    signalling char [ref?]); also made the lookup of rsh binary mandatory 
+    again since :ruby_impl can change during the Rsh instance's lifetime.
+
+[1ff74ab | Sun Oct 31 06:43:19 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Fixed .document
+
+[eb3f789 | Sun Oct 31 06:35:14 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Docs cleanup
+
+[13171cc | Sun Oct 31 06:24:30 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Yet another documentation reorganization
+
+    Renamed LICENSE and CHANGELOG to *.rdoc
+
+[0e841ee | Sat Oct 30 19:38:52 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Added luser example to constructor's rdoc
+
+[7a60372 | Sat Oct 30 19:35:41 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Fixed :luser bug in constructor
+
+[27f985a | Sat Oct 30 19:28:13 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Merge all changes to rsh.rb
+
+    Merged all experimental code into rsh.rb, removed rsh_p_r.rb.
+
+[94de036 | Sat Oct 30 18:52:42 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Continuing work on RshPR
+
+    Added flag :ruby_impl to force ruby implementation if needed.
+
+[6e9cdb8 | Sat Oct 30 17:47:32 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * More practical module
+
+    Made RshPR module more suitable to be used in Rsh class.
+
+[6ef45bd | Sat Oct 30 16:59:40 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Pure ruby RSH
+
+    Added rsh_p_r.rb: pure ruby rsh implementation. As a module to start with.
+
+[ef37141 | Thu Oct 28 03:39:10 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Netbeans adaptation
+
+    Added "nbproject" directory to git ignore list.
+
+[3abbddc | Wed Oct 27 15:01:04 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Finished working on v0.2.2
+
 [63b17fa | Wed Oct 27 14:50:57 UTC 2010] Pavel Argentov <argentoff@gmail.com>
 
  * Finished project documentation rework
