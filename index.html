@@ -11,14 +11,24 @@
 		body {
   		margin-top: 1.0em;
   		background-color: #9c9c9c;
-		  font-family: "Helvetica,Arial,FreeSans";
+	        font-family: Verdana,Helvetica,Arial,FreeSans;
   		color: #000000;
     }
     #container {
       margin: 0 auto;
+      margin-left: 100px;
       width: 700px;
+      background-color: #eee;
+      padding: 20px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border-color: black;
+      border-style: solid;
+      border-width: 1px;
     }
-		h1 { font-size: 3.8em; color: #636363; margin-bottom: 3px; }
+		h1 { font-size: 3.8em; color: #636363; margin-bottom: 3px;
+		  text-shadow: 1px 2px 6px rgba(0,0,0, 0.3)}
 		h1 .small { font-size: 0.4em; }
 		h1 a { text-decoration: none }
 		h2 { font-size: 1.5em; color: #636363; }
@@ -26,7 +36,14 @@
     a { color: #636363; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
+		pre { background: #000; color: #fff; padding: 15px;
+		      -webkit-border-radius: 5px;
+		      -moz-border-radius: 5px;
+		      border-radius: 5px;
+		      box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+		      -moz-box-shadow: 1px 2px 6px rgba(0,0,0,0.5);
+		      -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+		    }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
 	</style>
@@ -34,8 +51,6 @@
 </head>
 
 <body>
-  <a href="http://github.com/argent-smith/rsh"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
   <div id="container">
 
     <div class="download">
@@ -52,8 +67,8 @@
       A library wrapping BSD rsh(1) client execution into a PORO. Also features pure ruby rsh client implementation.
     </div>
 
-    <h2>Install</h2>
-<p>gem install rsh</p>
+    <h2>Automagic install from rubygems.org</h2>
+    <p><pre>$ gem install rsh</pre></p>
 <h2>Authors</h2>
 <p>Pavel Argentov (argentoff@gmail.com)<br/><br/>      </p>
 <h2>Contact</h2>
