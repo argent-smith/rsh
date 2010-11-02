@@ -25,6 +25,13 @@ title: "argent-smith/rsh @ GitHub"
 
 =----------------------------------------------------------------------------
 
+**Table of contents:**
+
+* toc
+{:toc}
+
+<p>&nbsp;</p>
+
 Version
 -------
 
@@ -62,7 +69,7 @@ The source code is available on GitHub in the repository
 
 ## Documentation
 
-Last version documentation is available [here](rdoc).
+Latest version documentation is available [here](rdoc).
 
 ## Changelog
 
@@ -72,6 +79,10 @@ Last version documentation is available [here](rdoc).
 ## License
 
 {% include LICENSE.rdoc %}
+
+## Links
+
+- [RSH gem on RubyGems.org](http://rubygems.org/gems/rsh)
 
 
 {% include footer.md %}
