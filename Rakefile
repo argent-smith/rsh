@@ -6,11 +6,10 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rsh"
-    gem.summary = %Q{Simple wrapper for rsh cli command.}
-    gem.description = %Q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
-      Here's the gem wrapping call to this command and handling the command's result/output.}
+    gem.summary = %Q{BSD remote shell (RFC-1282) protocol client for ruby}
+    gem.description = %Q{BSD rsh(1) cli program wrapper; pure ruby remote shell client implementation.}
     gem.email = "argentoff@gmail.com"
-    gem.homepage = "http://github.com/argent-smith/rsh"
+    gem.homepage = "http://argent-smith.github.com/rsh"
     gem.authors = ["Pavel Argentov"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.extra_rdoc_files = [

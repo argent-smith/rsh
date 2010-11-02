@@ -5,13 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rsh}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Argentov"]
-  s.date = %q{2010-10-31}
-  s.description = %q{All freenixes (e.g. Linux, *BSD, etc.) have 'rsh' command.
-      Here's the gem wrapping call to this command and handling the command's result/output.}
+  s.date = %q{2010-11-02}
+  s.description = %q{BSD rsh(1) cli program wrapper; pure ruby remote shell client implementation.}
   s.email = %q{argentoff@gmail.com}
   s.extra_rdoc_files = [
     "CHANGELOG.rdoc",
@@ -32,14 +31,14 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/argent-smith/rsh}
+  s.homepage = %q{http://argent-smith.github.com/rsh}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Simple wrapper for rsh cli command.}
+  s.summary = %q{BSD remote shell (RFC-1282) protocol client for ruby}
   s.test_files = [
-    "spec/spec_helper.rb",
-     "spec/rsh_spec.rb"
+    "spec/rsh_spec.rb",
+     "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
