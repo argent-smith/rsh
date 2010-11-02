@@ -1,3 +1,17 @@
+[4574ec6 | Tue Nov 02 18:03:03 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Some minor documentation fixes
+
+[179c3f6 | Tue Nov 02 18:02:17 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * Version bump to 1.0.1
+
+[44774b2 | Sun Oct 31 09:16:40 UTC 2010] Pavel Argentov <argentoff@gmail.com>
+
+ * CHANGELOG regenerated
+
+    CHANGELOG regenerated according to 1.0.0 final commit
+
 [f5ac480 | Sun Oct 31 09:12:03 UTC 2010] Pavel Argentov <argentoff@gmail.com>
 
  * Version 1.0.0 feature freeze
@@ -31,9 +45,10 @@
 
  * First byte experiment
 
-    Try to throw away first byte of server's output (it seems to be kinda 
-    signalling char [ref?]); also made the lookup of rsh binary mandatory 
-    again since :ruby_impl can change during the Rsh instance's lifetime.
+    Try to throw away first byte of server's output 
+    (it seems to be kinda signalling char [ref?]); also made the 
+    lookup of rsh binary mandatory again since :ruby_impl can change 
+    during the Rsh instance's lifetime.
 
 [1ff74ab | Sun Oct 31 06:43:19 UTC 2010] Pavel Argentov <argentoff@gmail.com>
 
