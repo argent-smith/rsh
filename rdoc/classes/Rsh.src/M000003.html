@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute! (Rsh)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rsh.rb, line 154</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute!</span>(<span class="ruby-identifier">command</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-ivar">@command</span> = <span class="ruby-identifier">command</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">command</span>
+    <span class="ruby-ivar">@result</span> = <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ruby_impl</span>
+      <span class="ruby-comment cmt"># pure ruby implementation call</span>
+      <span class="ruby-identifier">rsh_ruby</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">line</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-ivar">@result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># OS'es rsh(1) call</span>
+      <span class="ruby-identifier">open</span> <span class="ruby-node">&quot;|#{@executable} #{&quot;-n&quot; if @nullr} -l#{@ruser} -t#{@to} #{@host} #{@command}&quot;</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">line</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+          <span class="ruby-ivar">@result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@result</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

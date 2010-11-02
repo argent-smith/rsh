@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Rsh)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rsh.rb, line 97</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>={})
+    <span class="ruby-identifier">args</span> = {
+      <span class="ruby-identifier">:host</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;localhost&quot;</span>,
+      <span class="ruby-identifier">:command</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+      <span class="ruby-identifier">:ruser</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;nobody&quot;</span>,
+      <span class="ruby-identifier">:luser</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;USER&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;nobody&quot;</span>,
+      <span class="ruby-identifier">:to</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>,
+      <span class="ruby-identifier">:nullr</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+      <span class="ruby-identifier">:ruby_impl</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+    }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+
+    <span class="ruby-ivar">@result</span>     = <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-ivar">@ruby_impl</span>  = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:ruby_impl</span>]
+    <span class="ruby-ivar">@host</span>       = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:host</span>]
+    <span class="ruby-ivar">@command</span>    = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:command</span>]
+    <span class="ruby-ivar">@ruser</span>      = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:ruser</span>]
+    <span class="ruby-ivar">@luser</span>      = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:luser</span>]
+    <span class="ruby-ivar">@to</span>         = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:to</span>]
+    <span class="ruby-ivar">@nullr</span>      = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:nullr</span>]
+
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-identifier">open</span>(<span class="ruby-value str">&quot;| which rsh&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@executable</span> = <span class="ruby-identifier">io</span>.<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">detail</span>
+      <span class="ruby-ivar">@ruby_impl</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -3,6 +3,8 @@ layout: default
 title: "argent-smith/rsh @ GitHub"
 ---
 
+{% include nav.md %}
+
 +------------------------------------------------------------ {: .download}
 <a href="http://github.com/argent-smith/rsh/zipball/master">
   <img border="0" width="60"
@@ -22,6 +24,11 @@ title: "argent-smith/rsh @ GitHub"
 - BSD rsh protocol (RFC 1282) client pure ruby implementation
 
 =----------------------------------------------------------------------------
+
+Version
+-------
+
+Latest version is {% include VERSION %}
 
 Installation
 ------------
@@ -53,8 +60,18 @@ by running:
 The source code is available on GitHub in the repository
 ["argent-smith/rsh"](http://github.com/argent-smith/rsh).
 
+## Documentation
+
+Last version documentation is available [here](rdoc).
+
+## Changelog
+
+{% include CHANGELOG.rdoc %}
 
 
+## License
+
+{% include LICENSE.rdoc %}
 
 
 {% include footer.md %}
