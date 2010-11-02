@@ -1,0 +1,13 @@
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+
+## NETBEANS
+nbproject
+
+## JEKYLL
+_site

@@ -1,0 +1,82 @@
+/* 
+    Document   : default
+    Created on : 01.11.2010, 23:10:36
+    Author     : Pavel Argentov
+    Description: Default site CSS
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    margin-top: 1.0em;
+    background-color: #9c9c9c;
+    font-family: Verdana,Helvetica,Arial,FreeSans;
+    color: #000000;
+}
+
+#container {
+    margin: 0 auto;
+    margin-left: 100px;
+    width: 700px;
+    background-color: #eee;
+    padding: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#avatar {
+  margin: 0 auto;
+  margin-right: 20px;
+  float: right;
+  vertical-align: top;
+
+}
+
+h1, h2, h3 { font-effect: outline; }
+
+h1 { font-size: 3.8em; color: #636363; margin-bottom: 3px;
+     text-shadow: 1px 2px 6px rgba(0,0,0, 0.3)}
+
+h1 .small { font-size: 0.4em; }
+
+h1 a { text-decoration: none }
+
+h2 { font-size: 1.5em; color: #636363; }
+
+h3 { text-align: center; color: #636363; }
+
+a { color: #636363; }
+
+.description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+
+.download { float: right; }
+
+pre { background: #222222; color: #fff; padding: 15px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+      -moz-box-shadow: 1px 2px 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+}
+
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+.footer, #footer {text-align: right; padding-top: 30px; font-style: italic; font-size: .8em}
+
+.avatar_pic {
+  border: solid black 1px;
+  box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+  -moz-box-shadow: 1px 2px 6px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+}
