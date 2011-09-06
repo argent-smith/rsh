@@ -11,7 +11,7 @@ write me on the public email listed above.
 
 == CI status
 
-<img src="https://secure.travis-ci.org/argent-smith/rsh.png" />
+https://secure.travis-ci.org/argent-smith/rsh.png
 
 == Copyright
 
