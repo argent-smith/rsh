@@ -27,6 +27,11 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.rspec_opts = "-c -f d"
 end
 
+desc "Start Autotest CI"
+task :autotest => [".autotest", ".rspec"] do
+  system "bundle exec autotest"
+end
+
 task :default => :spec
 
 require 'rdoc/task'
