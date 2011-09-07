@@ -4,7 +4,7 @@
 require 'socket' # we'll need it in pure ruby implementation
 
 # = Ruby remote shell protocol (RFC 1282) client
-# 
+#
 # Creates and operates an rsh client instance. Parameters may
 # be specified through either constructor or attribute accessors. Result of
 # remote command execution (_String_) is either returned in functional style
@@ -26,7 +26,7 @@ require 'socket' # we'll need it in pure ruby implementation
 #
 #   18:30:46.799 MSD Fri Oct 22 2010
 #
-# * See c) case in execute! method comment. 
+# * See c) case in execute! method comment.
 #
 # === Example:
 #
@@ -71,8 +71,8 @@ class Rsh
   attr_accessor :nullr
 
   # The Constructor. If :ruby_impl is false checks the presence of rsh in the system (running,
-  # naturally, 'which rsh') and prepares the command to be run with <tt>execute!</tt>. 
-  # rsh CLI arguments are either having default values, being collected from constructor 
+  # naturally, 'which rsh') and prepares the command to be run with <tt>execute!</tt>.
+  # rsh CLI arguments are either having default values, being collected from constructor
   # call or specified via accessors.
   #
   # Call sequence:
@@ -83,9 +83,9 @@ class Rsh
   #           :to        => 5,
   #           :nullr     => true
   #           :ruby_impl => true) #=> Rsh instance
-  # 
+  #
   # If called without arguments, the following default values are being used:
-  # 
+  #
   #   :host      => "localhost"
   #   :command   => ""
   #   :ruser     => "nobody"
@@ -122,7 +122,7 @@ class Rsh
       @ruby_impl = true
     end
   end
-  
+
   # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
   # if @executable is not nil.
   def ruby_impl=(bool)
