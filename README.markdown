@@ -1,5 +1,6 @@
-
 # rsh
+
+[![Build Status](https://secure.travis-ci.org/argent-smith/rsh.png)](http://travis-ci.org/argent-smith/rsh)
 
 __Author__ Pavel Argentov <argentoff@gmail.com>
 
@@ -14,6 +15,3 @@ write me on the public email listed above.
 
 Copyright (c) 2010 Pavel Argentov. See LICENSE for details.
 
-## CI status
-
-[![Build Status](https://secure.travis-ci.org/argent-smith/rsh.png)](http://travis-ci.org/argent-smith/rsh)
