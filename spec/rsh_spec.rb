@@ -2,13 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Rsh do
 
+  def init_them
+    @rsh  = Rsh.new
+    @rshc = `which rsh`.chomp
+  end
+
   #
   # Basic fields interface checklist
   #
   context "has the following fields interface" do
-    before :each do
-      @rsh = Rsh.new
-    end
+    before :each do init_them end
 
     shared_examples "existing reader" do |sym|
       it "should exist" do
@@ -90,10 +93,7 @@ describe Rsh do
   end
 
   context "upon instance creation" do
-    before :each  do
-      @rsh  = Rsh.new
-      @rshc = `which rsh`.chomp
-    end
+    before :each do init_them end
 
     it "sets the rsh implementation to system if rsh command is found in the system" do
       @rsh.ruby_impl.should be_true if @rshc.empty?
@@ -111,9 +111,12 @@ describe Rsh do
   # Specific behavior tests
   #
   context "has the following specific behavior" do
+    before :each do init_them end
 
     describe "#executable" do
-      it "shows the system rsh program path"
+      it "shows the system rsh program path" do
+        @rsh.executable.should == @rshc
+      end
     end
 
     describe "#ruby_impl" do
