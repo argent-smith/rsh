@@ -109,7 +109,7 @@ class Rsh
       :ruby_impl => false
     }.merge!(args)
 
-    @executable = rshc
+    @executable = Rshc.new.path
     @result     = ""
     @ruby_impl  = @executable.empty? ? true : args[:ruby_impl]
     @host       = args[:host]
@@ -188,10 +188,6 @@ class Rsh
     end
     s.close
     r == "" ? nil : r
-  end
-
-  def rshc
-    Rshc.new.path
   end
 
   alias :execute :execute!
