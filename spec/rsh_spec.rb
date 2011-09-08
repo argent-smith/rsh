@@ -2,14 +2,36 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Rsh do
 
-  context "has the basic interface" do
-    shared_examples "accessor" do
-      it "should get the value"
-      it "should set the value"
+  #
+  # Basic fields interface checklist
+  #
+  context "has the following fields interface" do
+    before :each do
+      @rsh = Rsh.new
     end
-    shared_examples "reader" do
-      it "should get the value"
-      it "should NOT set the value"
+
+    shared_examples "existing reader" do |sym|
+      it "should exist" do
+        @rsh.should respond_to sym
+      end
+      it "should get the value" do
+        @rsh.send(sym).should_not be_nil
+      end
+    end
+
+    shared_examples "accessor" do |sym|
+      it_behaves_like "existing reader", sym
+      it "should set the value" do
+        v = 123
+        @rsh.send((((sym.to_s) + '=').to_sym), v).should == v
+      end
+    end
+    shared_examples "reader" do |sym|
+      it_behaves_like "existing reader", sym
+      it "should NOT set the value" do
+        v = 123
+        expect {@rsh.send((((sym.to_s) + '=').to_sym), v)}.to raise_error
+      end
     end
 
     [
@@ -22,7 +44,7 @@ describe Rsh do
       :nullr
     ].each do |sym|
       describe sym do
-        it_behaves_like "accessor"
+        it_behaves_like "accessor", sym
       end
     end
 
@@ -31,12 +53,15 @@ describe Rsh do
       :result
     ].each do |sym|
       describe sym do
-        it_behaves_like "reader"
+        it_behaves_like "reader", sym
       end
     end
 
   end
 
+  #
+  # Constructor tests
+  #
   context "has the following construction variants" do
     it "creates the instance with default values"
     it "creates the instance with given values"
@@ -48,6 +73,9 @@ describe Rsh do
     it "has empty result field"
   end
 
+  #
+  # Specific behavior tests
+  #
   context "has the following specific behavior" do
 
     describe "#executable" do
