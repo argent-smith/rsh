@@ -90,9 +90,21 @@ describe Rsh do
   end
 
   context "upon instance creation" do
-    it "sets the rsh implementation to system if rsh command is found in the system"
-    it "sets the rsh implementation to native otherwise"
-    it "has empty result field"
+    before :each  do
+      @rsh  = Rsh.new
+      @rshc = `which rsh`.chomp
+    end
+
+    it "sets the rsh implementation to system if rsh command is found in the system" do
+      @rsh.ruby_impl.should be_true if @rshc.empty?
+    end
+    it "sets the rsh implementation to native otherwise" do
+      @rsh.ruby_impl.should be_false unless @rshc.empty?
+    end
+
+    it "has empty result field" do
+      @rsh.result.should be_empty
+    end
   end
 
   #
