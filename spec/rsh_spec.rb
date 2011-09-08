@@ -63,8 +63,30 @@ describe Rsh do
   # Constructor tests
   #
   context "has the following construction variants" do
-    it "creates the instance with default values"
-    it "creates the instance with given values"
+    it "creates the instance with default values" do
+      rsh = Rsh.new
+      rsh.host.should    ==    "localhost"
+      rsh.command.should ==    ""
+      rsh.ruser.should   ==    "nobody"
+      rsh.luser.should   match /(#{ENV['USER']})|(nobody)/
+    end
+    it "creates the instance with given values" do
+      args = {
+        :host      => "foo.bar.com",
+        :command   => "echo bar",
+        :ruser     => "r00dt",
+        :luser     => "h4X0r",
+        :to        => 3,
+        :nullr     => true,
+        :ruby_impl => true
+      }
+
+      rsh = Rsh.new args
+
+      args.each do |k,v|
+        rsh.send(k).should == v
+      end
+    end
   end
 
   context "upon instance creation" do
