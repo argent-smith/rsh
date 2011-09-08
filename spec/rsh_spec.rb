@@ -102,7 +102,6 @@ describe Rsh do
       @rsh.ruby_impl.should be_false unless @rshc.empty?
     end
     it "forces ruby implementation despite the :ruby_impl flag if rsh command wasn't found"
-
     it "has empty result field" do
       @rsh.result.should be_empty
     end

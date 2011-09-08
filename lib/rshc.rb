@@ -1,6 +1,7 @@
-# :nodoc:
+# Finds and stores system rsh command data
 class Rshc
-  attr_reader :path
+
+  # Called without arguments. Finds and stores rsh(1) command data
   def initialize
     begin
       @path = `which rsh`.chomp
@@ -8,4 +9,7 @@ class Rshc
       @path = ""
     end
   end
+
+  # Returns rsh(1) path
+  attr_reader :path
 end
