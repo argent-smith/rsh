@@ -98,9 +98,10 @@ describe Rsh do
     it "sets the rsh implementation to system if rsh command is found in the system" do
       @rsh.ruby_impl.should be_true if @rshc.empty?
     end
-    it "sets the rsh implementation to native otherwise" do
+    it "sets the rsh implementation to pure ruby otherwise" do
       @rsh.ruby_impl.should be_false unless @rshc.empty?
     end
+    it "forces ruby implementation despite the :ruby_impl flag if rsh command wasn't found"
 
     it "has empty result field" do
       @rsh.result.should be_empty
@@ -120,8 +121,8 @@ describe Rsh do
     end
 
     describe "#ruby_impl" do
-      it "shows the current rsh implementation"
-      it "sets the current rsh implementation"
+      it "shows whether the active rsh implementation is pure ruby"
+      it "sets the current rsh implementation flag"
 
       context "when rsh executable isn't present in the system" do
         it "fails to set implementation to system"

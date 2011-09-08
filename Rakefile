@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'time'
-require 'bundler/setup'
+require 'bundler'
 
 Bundler.setup :default, :development, :test
 

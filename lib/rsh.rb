@@ -1,6 +1,9 @@
 # -*- Ruby -*-
 # Ruby remote shell protocol (RFC 1282) client.
 
+# Development thing
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
 require 'socket' # we'll need it in pure ruby implementation
 
 # = Ruby remote shell protocol (RFC 1282) client
@@ -50,6 +53,7 @@ require 'socket' # we'll need it in pure ruby implementation
 #   % man 1 rsh
 #
 class Rsh
+  require 'rshc'
   # flags whether to force pure ruby rsh client
   attr_accessor :ruby_impl
   # path to rsh program, +String+
@@ -105,22 +109,15 @@ class Rsh
       :ruby_impl => false
     }.merge!(args)
 
+    @executable = rshc
     @result     = ""
-    @ruby_impl  = args[:ruby_impl]
+    @ruby_impl  = @executable.empty? ? true : args[:ruby_impl]
     @host       = args[:host]
     @command    = args[:command]
     @ruser      = args[:ruser]
     @luser      = args[:luser]
     @to         = args[:to]
     @nullr      = args[:nullr]
-
-    begin
-      open("| which rsh") do |io|
-        @executable = io.gets.chomp
-      end
-    rescue => detail
-      @ruby_impl = true
-    end
   end
 
   # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
@@ -191,6 +188,10 @@ class Rsh
     end
     s.close
     r == "" ? nil : r
+  end
+
+  def rshc
+    Rshc.new.path
   end
 
   alias :execute :execute!
