@@ -5,5 +5,8 @@ Autotest.add_hook(:initialize) {|at|
   at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
     Dir['spec/**/*.rb']
   }
+  at.add_mapping(%r%^spec/.*\.rb$%) {|filename, _|
+    filename
+  }
   nil
 }
