@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'time'
-require 'bundler'
+require 'bundler/setup'
 
 Bundler.setup :default, :development, :test
 
@@ -25,6 +25,12 @@ Jeweler::GemcutterTasks.new
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.rspec_opts = "-c -f d"
+end
+
+desc "run specs with rcov"
+RSpec::Core::RakeTask.new(:rcov) do |rcov|
+  rcov.rcov = true
+  rcov.rcov_opts = ['-x', File.join(ENV['HOME'], '.rvm')]
 end
 
 unless ENV['TRAVIS']

@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 group :test do
   gem "rspec"
+  gem "rcov"
 
   # Travis CI ZenTest bug workaround
   unless ENV['TRAVIS']
