@@ -123,7 +123,8 @@ class Rsh
   # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
   # if @executable is not nil.
   def ruby_impl=(bool)
-    @executable ? @ruby_impl = bool : @ruby_impl
+    raise "Cannot unset ruby_impl: no rsh(1) found in the system" if @executable.empty? and bool == false
+    @ruby_impl = bool
   end
 
   # Executes rsh command using previously collected arguments. If :ruby_impl is

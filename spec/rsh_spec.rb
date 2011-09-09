@@ -127,7 +127,9 @@ describe Rsh do
   # Specific behavior tests
   #
   context "has the following specific behavior" do
-    before :each do init_them end
+    before :each do
+      init_them
+    end
 
     describe "#executable" do
       it "shows the system rsh program path" do
@@ -140,15 +142,30 @@ describe Rsh do
     end
 
     describe "#ruby_impl" do
-      it "shows whether the active rsh implementation is pure ruby"
-      #Rshc.stub(:find).and_return("/usr/bin/rsh")
-      #Rsh.new(:ruby_impl => true).ruby_impl.should  be_true
-      #Rsh.new(:ruby_impl => false).ruby_impl.should be_false
+      it "shows whether the active rsh implementation is pure ruby" do
+        Rshc.stub(:find).and_return("/usr/bin/rsh")
+        Rsh.new(:ruby_impl => true).ruby_impl.should  be_true
+        Rsh.new(:ruby_impl => false).ruby_impl.should be_false
+      end
     end
     describe "#ruby_impl=" do
-      it "sets the current rsh implementation flag"
+      it "sets the current rsh implementation flag" do
+        Rshc.stub(:find).and_return("/usr/bin/rsh")
+        @rsh.ruby_impl = true
+        @rsh.ruby_impl.should be_true
+      end
       context "when rsh executable isn't present in the system" do
-        it "fails to unset ruby implementation"
+        before :each do
+          Rshc.stub(:find).and_return("")
+          @rsh = Rsh.new
+        end
+        it "fails to unset ruby implementation" do
+          expect {@rsh.ruby_impl = false}.to raise_error RuntimeError, "Cannot unset ruby_impl: no rsh(1) found in the system"
+        end
+        it "sets ruby implementation to true" do
+          @rsh.ruby_impl = true
+          @rsh.ruby_impl.should be_true
+        end
       end
     end
 
