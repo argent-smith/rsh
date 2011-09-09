@@ -120,8 +120,8 @@ class Rsh
     @nullr      = args[:nullr]
   end
 
-  # :ruby_impl writer ensuring that we can set/reset :ruby_impl only
-  # if @executable is not nil.
+  # :ruby_impl= writer ensures that we can set/reset :ruby_impl only
+  # if @executable is not empty. Raises RuntimeError otherwise.
   def ruby_impl=(bool)
     raise "Cannot unset ruby_impl: no rsh(1) found in the system" if @executable.empty? and bool == false
     @ruby_impl = bool
