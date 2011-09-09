@@ -94,31 +94,34 @@ describe Rsh do
   end
 
   context "upon instance creation" do
-    before :each do init_them end
-
     it "has empty result field" do
-      @rsh.result.should be_empty
+      Rsh.new.result.should be_empty
     end
 
     it "sets the rsh implementation to system if rsh command is found in the system" do
-      @rsh.ruby_impl.should be_true if @rshc.empty?
+      Rshc.stub(:find).and_return("/usr/bin/rsh")
+      Rsh.new.ruby_impl.should be_false
     end
 
     it "sets the rsh implementation to pure ruby otherwise" do
-      @rsh.ruby_impl.should be_false unless @rshc.empty?
+      Rshc.stub(:find).and_return("")
+      Rsh.new.ruby_impl.should be_true
     end
   end
 
   context "when rsh(1) isn't present in the system" do
     it "forces ruby implementation despite the :ruby_impl flag" do
       Rshc.stub(:find).and_return("")
-      rsh = Rsh.new
+      rsh = Rsh.new :ruby_impl => false
       rsh.executable.should be_empty
       rsh.ruby_impl.should  be_true
+      rshc = "/usr/bin/rsh"
+      Rshc.stub(:find).and_return(rshc)
+      rsh = Rsh.new :ruby_impl => false
+      rsh.executable.should == rshc
+      rsh.ruby_impl.should  be_false
     end
   end
-
-
 
   #
   # Specific behavior tests
@@ -129,15 +132,20 @@ describe Rsh do
     describe "#executable" do
       it "shows the system rsh program path" do
         @rsh.executable.should == @rshc
+        ["", "/usr/bin/rsh"].each do |x|
+          Rshc.stub(:find).and_return(x)
+          Rsh.new.executable.should == x
+        end
       end
     end
 
     describe "#ruby_impl" do
       it "shows whether the active rsh implementation is pure ruby"
+    end
+    describe "#ruby_impl=" do
       it "sets the current rsh implementation flag"
-
       context "when rsh executable isn't present in the system" do
-        it "fails to set implementation to system"
+        it "fails to unset ruby implementation"
       end
     end
 
@@ -148,12 +156,12 @@ describe Rsh do
         it "stores the result in @result"
       end
       shared_examples "in either implementation" do
-         context "in batch execution mode" do
-           it_behaves_like "expected"
-         end
-         context "in block execution mode" do
-           it_behaves_like "expected"
-         end
+        context "in batch execution mode" do
+          it_behaves_like "expected"
+        end
+        context "in block execution mode" do
+          it_behaves_like "expected"
+        end
       end
       context "with system implementation" do
         it_behaves_like "in either implementation"

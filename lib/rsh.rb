@@ -109,7 +109,7 @@ class Rsh
       :ruby_impl => false
     }.merge!(args)
 
-    @executable = Rshc.new.path
+    @executable = Rshc.find
     @result     = ""
     @ruby_impl  = @executable.empty? ? true : args[:ruby_impl]
     @host       = args[:host]
