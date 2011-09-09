@@ -141,6 +141,9 @@ describe Rsh do
 
     describe "#ruby_impl" do
       it "shows whether the active rsh implementation is pure ruby"
+      #Rshc.stub(:find).and_return("/usr/bin/rsh")
+      #Rsh.new(:ruby_impl => true).ruby_impl.should  be_true
+      #Rsh.new(:ruby_impl => false).ruby_impl.should be_false
     end
     describe "#ruby_impl=" do
       it "sets the current rsh implementation flag"
