@@ -1,3 +1,4 @@
+$:.unshift File.dirname(__FILE__)
 require 'util/ag_utils'
 
 source "http://rubygems.org"
