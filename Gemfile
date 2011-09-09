@@ -1,8 +1,10 @@
+require 'util/ag_utils'
+
 source "http://rubygems.org"
 
 group :test do
   gem "rspec"
-  gem "rcov"
+  gem "rcov" unless AgUtils::Rbx.found?
 
   # Travis CI ZenTest bug workaround
   unless ENV['TRAVIS']

@@ -16,6 +16,9 @@ tmtags
 ## NETBEANS
 nbproject
 
+## Bundler
+Gemfile.lock
+
 ## PROJECT::GENERAL
 coverage
 rdoc
@@ -23,3 +26,4 @@ doc
 pkg
 
 ## PROJECT::SPECIFIC
+

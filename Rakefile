@@ -3,6 +3,8 @@ require 'rake'
 require 'time'
 require 'bundler/setup'
 
+require 'util/ag_utils'
+
 Bundler.setup :default, :development, :test
 
 require 'jeweler'
@@ -27,10 +29,12 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.rspec_opts = "-c -f d"
 end
 
-desc "run specs with rcov"
-RSpec::Core::RakeTask.new(:rcov) do |rcov|
-  rcov.rcov = true
-  rcov.rcov_opts = ['-x', File.join(ENV['HOME'], '.rvm')]
+unless AgUtils::Rbx.found?
+  desc "run specs with rcov"
+  RSpec::Core::RakeTask.new(:rcov) do |rcov|
+    rcov.rcov = true
+    rcov.rcov_opts = ['-x', File.join(ENV['HOME'], '.rvm')]
+  end
 end
 
 unless ENV['TRAVIS']
