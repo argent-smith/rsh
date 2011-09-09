@@ -67,6 +67,7 @@ describe Rsh do
   #
   context "has the following construction variants" do
     it "creates the instance with default values" do
+      Rshc
       rsh = Rsh.new
       rsh.host.should    ==    "localhost"
       rsh.command.should ==    ""
@@ -95,17 +96,29 @@ describe Rsh do
   context "upon instance creation" do
     before :each do init_them end
 
-    it "sets the rsh implementation to system if rsh command is found in the system" do
-      @rsh.ruby_impl.should be_true if @rshc.empty?
-    end
-    it "sets the rsh implementation to pure ruby otherwise" do
-      @rsh.ruby_impl.should be_false unless @rshc.empty?
-    end
-    it "forces ruby implementation despite the :ruby_impl flag if rsh command wasn't found"
     it "has empty result field" do
       @rsh.result.should be_empty
     end
+
+    it "sets the rsh implementation to system if rsh command is found in the system" do
+      @rsh.ruby_impl.should be_true if @rshc.empty?
+    end
+
+    it "sets the rsh implementation to pure ruby otherwise" do
+      @rsh.ruby_impl.should be_false unless @rshc.empty?
+    end
   end
+
+  context "when rsh(1) isn't present in the system" do
+    it "forces ruby implementation despite the :ruby_impl flag" do
+      Rshc.stub(:find).and_return("")
+      rsh = Rsh.new
+      rsh.executable.should be_empty
+      rsh.ruby_impl.should  be_true
+    end
+  end
+
+
 
   #
   # Specific behavior tests
